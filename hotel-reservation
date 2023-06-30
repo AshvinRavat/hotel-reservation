@@ -1,0 +1,72 @@
+// Reservation.
+
+// Customer, Hotel Reservation.
+
+Customer :
+1) can view site & create Account.
+2) can view booking & search, filter according to the requirements
+    Requirements are :
+        date & time,
+        locations,
+        budget (Price)
+        About Service & rating of hotel. & popularity
+        may be what other service they provide like food, tv, wifi, etc
+        near by popular place, or near to transporations like Airports, Bus Stands, Railway Station
+
+3)View Hotel Details, Rooms :
+    if customer is intrested they will be view hotel details.
+    they will see all the details that they requiring
+    other details are :
+        Hotel Rating, Hotel & Rooms photos,
+        may vie other photos like Restaurant, Swaming pools or other service that the Hotel is providing
+
+4) make booking by filing details & make payment.
+    if Booking is available they will continue booking
+    make booking by filling the requirement for the booking
+    Requirements are :
+        For how many days.
+        from Date (Starting date), to End Date.
+        For how many peoples.
+        how many rooms.
+
+        once they fill all the details the bill will be genrate based on the filing details & they will do payment for that.
+
+5) Confirmation for Booking :
+     once payment done, they will get notification, email and even check their booking
+     details in the site.
+
+
+
+6) Update, or cancel booking :
+    if customer want to update booking like
+    Change Reservation Dates,
+    Theire Requirement for the booking like rooms, guest, or personal details, contact detail then they should be able to do that.
+
+    Cancel Booking :
+        If customer wants to cancel the booking they able to cancel booking base on the cancelation policy
+        ot that booking.
+
+
+// Hotel Owners (Reservation Management) :
+
+1) Create Theier Account :
+    Hotel Can manage their Reservation By Creating an Account.
+
+2) Add Details About Hotel, Rooms, & other Services.
+    Hotel Details.
+
+    Rooms Details:
+    They should be able to add Rooms Details
+    Details can be
+        About Rooms : like photos, Size, Furniture,
+        Price Details : Add Details of the price may be night price, day price.
+
+
+    Other Services :
+        They might be add other services details if they offers like Restaurants, Swimming or any other.
+
+
+3) View Bookings :
+    They can view the booking Details.
+        they can view who book the rooms, for how many days, how many pepoles
+        payment details.
