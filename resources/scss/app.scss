@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+$primary: #26b2a6;
+$gray: #7A7B7E;
+$dark-gray: #535352;
+$white: #ffffff;
+$black: #000000;
+$bg: #F6F7F8;
+$light-gray: #E2E3E6;
+$light-bg:#f9f9f9;
+$light:#fafbfe;
+$noti-bg:#e3e9f1;
+
+@import "bootstrap/scss/bootstrap";
+@import "login";
