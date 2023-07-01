@@ -17,6 +17,9 @@
                 </li>
             </ul>
             @auth
+                <a class="me-2 btn btn-primary" href="{{ route('become_owner_index') }}">
+                    Switch to Owner
+                </a>
                 <li class="nav-item dropdown me-3 list-group">
                     <a class="nav-link dropdown-toggle text-primary"
                         href="#" role="button"
