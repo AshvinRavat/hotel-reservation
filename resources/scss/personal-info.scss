@@ -1,0 +1,48 @@
+.personal-info{
+    label{
+        font-size: 14px;
+        color: $primary;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+}
+
+.dropzone{
+    border: 2px dotted #E2E3E6;
+    position: relative;
+    .dz-button{
+        background-color: #E6254F !important;
+        padding: 6px 40px !important;
+        color: $white !important;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 400;
+        border-radius: 8px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .dz-message{
+        margin:  0px !important;
+
+    }
+    .drop-box{
+        background-color: $light-bg;
+        // padding-top: 74px;
+        // padding-bottom: 74px;
+        height: 148px;
+    }
+}
+p{
+    font-size: 14px;
+    color: $gray;
+}
+.buton-submit{
+    padding: 7px 51px;
+    margin-bottom: 145px;
+    @media(max-width:768px){
+        margin-bottom: 30px;
+        width: 100%;
+    }
+}
