@@ -1,7 +1,6 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
+import Alert from 'bootstrap/js/dist/alert';
 
-window.Alpine = Alpine;
-
-Alpine.start();
+import { Tooltip, Toast, Popover } from 'bootstrap';
+import { createPopper } from '@popperjs/core';
