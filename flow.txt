@@ -1,0 +1,17 @@
+// front-end setup
+// migrations
+// users create
+
+// front-end design :
+    set layouts for owner :
+        auth /
+            login,
+            register
+            forget password,
+            email-verification
+        Customer :
+            dashboard
+            profile-page
+        owner /
+            create-business-account-page.
+        
