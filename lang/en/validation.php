@@ -185,6 +185,11 @@ return [
             'mimes:jpeg,png,jpg', 'Profile photo must jpeg,png or jpg',
             'max', 'Profile photo size not be grater than 2mb',
         ],
+        'pan_number' => [
+            'required' => 'PAN Number is required',
+            'max', 'PAN Number should not grater than 10 digits',
+            'regex', 'invalid format for PAN Number',
+        ],
     ],
 
     /*
