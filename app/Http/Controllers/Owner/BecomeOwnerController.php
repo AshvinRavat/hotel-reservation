@@ -10,6 +10,9 @@ class BecomeOwnerController extends Controller
 {
    public function index()
    {
+      if(auth()->user()->role == "1") {
+         return view('owner.index');
+      }
         return view('owner.become-owner');
    }
 

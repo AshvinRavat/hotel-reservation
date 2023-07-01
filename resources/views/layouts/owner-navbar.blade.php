@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary float-left">
     <div class="container-fluid">
-        <a class="navbar-brand text-primary" href="#">Owner</a>
+        <a class="navbar-brand text-primary" href="#">Owner-Dashboard</a>
         <button class="navbar-toggler bg-light"
             type="button"
             data-bs-toggle="collapse"
@@ -11,14 +11,21 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0  list-group">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0  list-group text-primary">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href=""></a>
+                    <a class="nav-link active text-primary" aria-current="page" href="">
+                        Hotel-Mangement
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-primary" aria-current="page" href="">
+                        Rooms 
+                    </a>
                 </li>
             </ul>
             @auth
-                <a class="me-2 btn btn-primary" href="{{ route('become_owner_index') }}">
-                    Switch to Owner
+                <a class="me-2 btn btn-primary" href="{{ '/' }}">
+                    Switch to Customer
                 </a>
                 <li class="nav-item dropdown me-3 list-group">
                     <a class="nav-link dropdown-toggle text-primary"
