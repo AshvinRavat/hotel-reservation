@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary float-left">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Hotel-Reservation</a>
+        <a class="navbar-brand text-primary" href="#">Hotel-Reservation</a>
         <button class="navbar-toggler bg-light"
             type="button"
             data-bs-toggle="collapse"
@@ -18,7 +18,7 @@
             </ul>
             @auth
                 <li class="nav-item dropdown me-3 list-group">
-                    <a class="nav-link dropdown-toggle "
+                    <a class="nav-link dropdown-toggle text-primary"
                         href="#" role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -32,8 +32,13 @@
                             </form>
                         </li>
                         <li>
-                            <a type="submit" class="dropdown-item" href="">
+                            <a href="{{ route('profile.edit') }}" class="dropdown-item" href="">
                                 My Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('password.update_index') }}" class="dropdown-item" >
+                                Update Password
                             </a>
                         </li>
                     </ul>
