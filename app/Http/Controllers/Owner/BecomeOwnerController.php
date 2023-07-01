@@ -16,7 +16,7 @@ class BecomeOwnerController extends Controller
    public function updatingUserAsOwner(Request $request)
    {
       $owner = $request->validate([
-         'pan_number' => ['required'],
+         'pan_number' => ['required', 'max:10', 'regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/'],
          "address_line_1" => ['required', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
          "address_line_2" => ['nullable', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
          "city" => ['required', 'max:50', 'regex:/^([a-zA-Z \']*)$/'],
@@ -24,6 +24,7 @@ class BecomeOwnerController extends Controller
       ]);
 
       $owner['role'] = 1;
+
       $user = new User();
       $user->where('id', auth()->user()->id)->update($owner);
 
