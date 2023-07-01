@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Owner\BecomeOwnerController;
+use App\Http\Controllers\Owner\HotelController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
+Route::prefix('owner')->middleware(['auth', 'verified'])->name('owner.')->controller(HotelController::class)->group(function (){ 
+    Route::get('/hotel',  'index')->name('hotel.index');
+    Route::post('/hotel/create',  'create')->name('hotel.create');
+    Route::get('/hotel/edit',  'edit')->name('hotel.edit');
+    Route::get('/hotel/delete',  'delete')->name('hotel.delete');
+
+});
 
 require __DIR__.'/auth.php';
