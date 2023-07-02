@@ -38,10 +38,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 Route::prefix('owner')->middleware(['auth', 'verified'])->name('owner.')->controller(HotelController::class)->group(function (){ 
-    Route::get('/hotel',  'index')->name('hotel.index');
-    Route::post('/hotel/create',  'create')->name('hotel.create');
-    Route::get('/hotel/edit',  'edit')->name('hotel.edit');
-    Route::get('/hotel/delete',  'delete')->name('hotel.delete');
+    Route::get('/hotel',  'index')->name('hotel_index');
+    Route::get('/hotel/create',  'create')->name('hotel_create');
+    Route::post('/hotel/store',  'store')->name('hotel_store');
+    Route::get('/hotel/edit',  'edit')->name('hotel_edit');
+    Route::get('/hotel/delete',  'delete')->name('hotel_delete');
 
 });
 
