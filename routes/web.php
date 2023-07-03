@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Owner\BecomeOwnerController;
 use App\Http\Controllers\Owner\HotelController;
+use App\Http\Controllers\Owner\RoomController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,14 +37,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('become-owner/successful', [BecomeOwnerController::class, 'becomingOwnerSuccessfully'])->name('become_owner_successfully');
 });
 
+Route::prefix('owner')->middleware(['auth', 'verified'])->name('owner.')->group(function () {
 
-Route::prefix('owner')->middleware(['auth', 'verified'])->name('owner.')->controller(HotelController::class)->group(function () {
-    Route::get('/hotel', 'index')->name('hotel_index');
-    Route::get('/hotel/create', 'create')->name('hotel_create');
-    Route::post('/hotel/store', 'store')->name('hotel_store');
-    Route::get('/hotel/edit/{hotel}', 'edit')->name('hotel_edit');
-    Route::post('/hotel/update/{hotel}', 'update')->name('hotel_update');
-    Route::post('/hotel/delete/{hotel}', 'delete')->name('hotel_delete');
+    Route::prefix('hotel/')->name('hotel_')->controller(HotelController::class)->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('edit/{hotel}', 'edit')->name('edit');
+        Route::post('update/{hotel}', 'update')->name('update');
+        Route::post('delete/{hotel}', 'delete')->name('delete');
+    });
+
+    Route::prefix('room/')->name('room_')->controller(RoomController::class)->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('edit/{room}', 'edit')->name('edit');
+        Route::post('update/{room}', 'update')->name('update');
+        Route::post('delete/{room}', 'delete')->name('delete');
+    });
 });
 
 require __DIR__.'/auth.php';

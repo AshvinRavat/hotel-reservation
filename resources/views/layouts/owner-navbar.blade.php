@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active text-primary" aria-current="page" href="">
+                    <a class="nav-link active text-primary" href="{{ route('owner.room_index') }}">
                         Rooms
                     </a>
                 </li>

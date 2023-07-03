@@ -70,3 +70,7 @@ Customer :
     They can view the booking Details.
         they can view who book the rooms, for how many days, how many pepoles
         payment details.
+
+
+// rooms
+id, hotel_id, , price, for_how_many_pepole, description,image

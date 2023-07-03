@@ -126,7 +126,7 @@ return [
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'The :attribute field format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => ':attribute field is required.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',
@@ -182,13 +182,31 @@ return [
         ],
         'profile' => [
             'image' => 'Profile photo must be image',
-            'mimes:jpeg,png,jpg', 'Profile photo must jpeg,png or jpg',
-            'max', 'Profile photo size not be grater than 2mb',
+            'mimes:jpeg,png,jpg'  =>'Profile photo must jpeg,png or jpg',
+            'max'  => 'Profile photo size not be grater than 2mb',
         ],
         'pan_number' => [
             'required' => 'PAN Number is required',
-            'max', 'PAN Number should not grater than 10 digits',
-            'regex', 'invalid format for PAN Number',
+            'max' => 'PAN Number should not grater than 10 digits',
+            'regex' =>'invalid format for PAN Number',
+        ],
+        'post_code' => [
+            'required' => 'Post code is required',
+            'digits' => 'Post code should be 6 digits',
+        ],
+        'hotel_id' => [
+            'required' => 'Please select hotel',
+        ],
+        'room_number' => [
+            'required' => 'Room number should not blank',
+            'regex' => 'Room number should not contain special characters',
+        ],
+
+        'max_occupancy' => [
+            'required' => 'Please select max occupancy ',
+        ],
+        'category_id' => [
+            'required' => 'Please select category ',
         ],
     ],
 

@@ -129,6 +129,7 @@ Hotel
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ route('owner.hotel_index') }}" class="btn btn-white">Cancel</a>
                     </div>
                 </div>
             </form>
