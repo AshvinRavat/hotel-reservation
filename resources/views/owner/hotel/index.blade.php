@@ -9,8 +9,13 @@ Hotel
                 @include('layouts.alert')
                 <div class="borrower-cnt business-cnt">
                     <div class="d-flex justify-content-between">
-                        <h4 class="text-primary">Hotel Management</h4>
-                    </div>
+                            <h4 class="text-primary">Hotel Management</h4>
+                            <div>
+                                <a href="{{route('owner.hotel_create')}}" class="btn btn-primary mb-0">
+                                    Add Hotels
+                                </a>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

@@ -94,7 +94,7 @@ Hotel
                                                     Postal Code
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text"
+                                                <input type="number"
                                                        class="form-control @error('post_code') is-invalid @enderror"
                                                        id="post-code"
                                                        name="post_code"
@@ -104,33 +104,30 @@ Hotel
                                                 @enderror
                                             </div>
                                             <div class="col-sm-12 mb-sm-0 mb-4">
-                                                <label for="descripation" class="form-label">
-                                                    Descripation
-                                                    <span class="text-danger">*</span>
+                                                <label for="description" class="form-label">
+                                                    Description
                                                 </label>
                                                 <textarea type="text"
-                                                       class="form-control @error('descripation') is-invalid @enderror"
-                                                       id="descripation"
-                                                       name="descripation"
-                                                       >
-                                                       {{old('descripation')}}
+                                                       class="form-control @error('description') is-invalid @enderror"
+                                                       id="description"
+                                                       name="description">{{old('description')}}
                                                 </textarea>
-                                                @error('descripation')
+                                                @error('description')
                                                     <div class="invalid-feedback">{{$message}}</div>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
                         </fieldset>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Save</button>
+                        <a href="{{ route('owner.hotel_index') }}" class="btn btn-white">Cancel</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 @endsection
-

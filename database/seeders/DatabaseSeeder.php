@@ -39,5 +39,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->command->info('Hotels created');
+
+        
     }
 }

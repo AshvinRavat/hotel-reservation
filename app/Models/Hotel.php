@@ -13,10 +13,11 @@ class Hotel extends Model
         'name',
         'user_id',
         'image',
-        'descripation',
+        'description',
         'address_line_1',
         'address_line_2',
         'city',
         'post_code'
     ];
+
 }

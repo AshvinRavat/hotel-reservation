@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hotel;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
     public function index()
     {
-
         $hotel = new Hotel();
+
         $hotels = $hotel->where('user_id', auth()->user()->id)->get();
+
         return view('owner.hotel.index', [
             'hotels' => $hotels
         ]);
@@ -30,7 +32,7 @@ class HotelController extends Controller
             "address_line_1" => ['required', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
             "address_line_2" => ['nullable', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
             "city" => ['required', 'max:50', 'regex:/^([a-zA-Z \']*)$/'],
-            "post_code" => ['required', 'digits_between:4,5'],
+            "post_code" => ['required', 'digits:6'],
             "image" => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
          ]);
 
