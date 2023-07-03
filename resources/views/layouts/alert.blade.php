@@ -1,10 +1,9 @@
 <div class="alert-group my-2">
-    @if (session('status'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ session('status') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
+    @if (session('status') or session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('status') ?? session('status') ?? session('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
     @if (session('error'))
         <div class="alert alert-danger d-flex align-items-center" role="alert">

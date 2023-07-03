@@ -3,37 +3,58 @@
 Hotel
 @endsection
 @section('content')
-<div class="center-main mt-5">
-    <div class="menu">
-        <div class="container">
-            <form action="{{route('owner.hotel_store')}}"
-                method="POST"
-                enctype="multipart/form-data">
-                @csrf
+    <div class="center-main mt-5 mb-5">
+        <div class="menu">
+            <div class="container">
+                @include('layouts.alert')
                 <div class="borrower-cnt business-cnt">
                     <div class="d-flex justify-content-between">
                         <h4 class="text-primary">Hotel Management</h4>
                     </div>
-                    @include('layouts.alert')
-                    <table id="myTable" class="display">
-                        <thead>
-                            <tr>
-                                <th>Column 1</th>
-                                <th>Column 2</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Row 1 Data 1</td>
-                                <td>Row 1 Data 2</td>
-                            </tr>
-                            <tr>
-                                <td>Row 2 Data 1</td>
-                                <td>Row 2 Data 2</td>
-                            </tr>
-                        </tbody>
-                    </table>        <tr>
-                    
-@include('layouts.alert')
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table display" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($hotels as $hotel)
+                    <tr>
+                        <th>{{ $hotel->id }}</th>
+                        <th>{{ $hotel->name }}</th>
+                        <th>{{ $hotel->address_line_1}}</th>
+                        <th>{{ $hotel->city }}</th>
+                        <th>{{ $hotel->description }}</th>
+                        <th>
+                            <a href="{{ route('owner.hotel_edit', ['hotel' => $hotel->id]) }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                               <a class="text-danger"
+                                 data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                            @include('layouts.confirm-delete', [
+                                'title' => 'Hotel',
+                                'routeName' =>  'owner.hotel_delete',
+                                'parmaterName' => 'hotel',
+                                'id' => $hotel->id,
+                            ])
+                            </a>
+                        </th>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
-

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Hotel;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'first_name' => 'abc',
             'last_name' => 'xyz',
             'name' => 'abc',
@@ -27,5 +28,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->command->info('User created');
+
+        Hotel::factory(5)->create([
+            'user_id' => $user->id,
+            'name' => fake()->name(),
+            'city' => fake()->city(),
+            'address_line_1' => fake()->address(),
+            'description' => 'loream ipsum',
+            'post_code' => fake()->postcode(),
+        ]);
+
+        $this->command->info('Hotels created');
     }
 }
