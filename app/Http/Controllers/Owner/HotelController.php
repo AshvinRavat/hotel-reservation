@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hotel;
-use App\Models\Room;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -13,10 +12,8 @@ class HotelController extends Controller
     {
         $hotel = new Hotel();
 
-        $hotels = $hotel->where('user_id', auth()->user()->id)->get();
-
         return view('owner.hotel.index', [
-            'hotels' => $hotels
+            'hotels' => $hotel->where('user_id', auth()->user()->id)->get()
         ]);
     }
 

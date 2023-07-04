@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Customer\HotelController as CustomerHotelController;
+use App\Http\Controllers\Customer\RoomController as CustomerRoomController;
 use App\Http\Controllers\Owner\BecomeOwnerController;
 use App\Http\Controllers\Owner\HotelController;
 use App\Http\Controllers\Owner\RoomController;
@@ -19,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CustomerHotelController::class, 'index']);
+Route::get('/', [CustomerHotelController::class, 'index'])->name('index');
+Route::get('hotel/{hotel}/rooms', [CustomerRoomController::class, 'index'])->name('customer.hotel_rooms');
+Route::get('hotel/room/{room}', [CustomerRoomController::class, 'viewRoomDetails'])->name('customer.hotel_room_detail');
 
 Route::middleware(['auth', 'verified'])->controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'edit')->name('profile.edit');
@@ -50,7 +53,7 @@ Route::prefix('owner')->middleware(['auth', 'verified'])->name('owner.')->group(
     Route::prefix('room/')->name('room_')->controller(RoomController::class)->group(function () {
         Route::get('', 'index')->name('index');
         Route::get('create', 'create')->name('create');
-        Route::post('store', 'store')->name('store');   
+        Route::post('store', 'store')->name('store');
         Route::get('edit/{room}', 'edit')->name('edit');
         Route::post('update/{room}', 'update')->name('update');
         Route::post('delete/{room}', 'delete')->name('delete');
