@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Customer\HotelController as CustomerHotelController;
 use App\Http\Controllers\Customer\RoomController as CustomerRoomController;
+use App\Http\Controllers\Customer\RoomReservationController;
 use App\Http\Controllers\Owner\BecomeOwnerController;
 use App\Http\Controllers\Owner\HotelController;
 use App\Http\Controllers\Owner\RoomController;
@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CustomerHotelController::class, 'index'])->name('index');
 Route::get('hotel/{hotel}/rooms', [CustomerRoomController::class, 'index'])->name('customer.hotel_rooms');
 Route::get('hotel/room/{room}', [CustomerRoomController::class, 'viewRoomDetails'])->name('customer.hotel_room_detail');
+
+
+Route::post('/get-booking-details', [RoomReservationController::class, 'getBookingDetails'])->name('customer.reservation');
+Route::get('/confirm-booking', [RoomReservationController::class, 'confirmBookingAndReservation'])->name('customer.confirm_reservation');
 
 Route::middleware(['auth', 'verified'])->controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'edit')->name('profile.edit');
@@ -59,7 +63,5 @@ Route::prefix('owner')->middleware(['auth', 'verified'])->name('owner.')->group(
         Route::post('delete/{room}', 'delete')->name('delete');
     });
 });
-
-
 
 require __DIR__.'/auth.php';
