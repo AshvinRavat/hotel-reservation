@@ -114,12 +114,14 @@ Hotel
                                                 <span class="f-size-12 text-primary">
                                                     (Image allow up to 2 MB)
                                                 </span>
-                                                @error('profile')
+                                                @error('image')
                                                     <div class="invalid-feedback">{{$message}}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-6 mt-2 mb-3">
-                                                 <img src="{{ asset('storage/photos/OLwranPqQFbmabFWJPQ7SqemjeTtFLLHMrBMISt6.png') }}" height="100px">
+                                                 <img src="{{ asset('storage/hotel/images/' .
+                                                    $hotel->image) }}"
+                                                 height="100px">
                                             </div>
                                         </div>
                                     </div>

@@ -73,4 +73,23 @@ Customer :
 
 
 // rooms
-id, hotel_id, , price, for_how_many_pepole, description,image
+id, hotel_id, , price, for_how_many_pepole, description,image.
+
+// room-reservations :
+id,
+room_id,
+customer_id,
+price,
+reservation_start_date,
+reservation_end_date,
+total_occupancy (persons_per_room),
+total_amount,
+
+calculation of total amount :
+
+base on the days
+per day price : 1500
+
+04-07-23 To 10-07-23 = 6 days.
+
+1500 * 6 days

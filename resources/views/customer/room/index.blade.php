@@ -49,38 +49,36 @@
             </div>
         </form>
     </div>
-    <div class="container d-flex">
-        <div class="row pb-4 mb-4">
-            @forelse ($rooms as $room )
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div>
-                            <img src="{{ asset('storage/hotel/images/' . $room->image) }}"
-                                class="img-responsive image">
-                        </div>
-                        <p class="rating">9.2</p>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                {{ $room->hotel }}
-                            </h5>
-                            <p class="card-text">
-                               Price: {{ 'INR '. $room->price }}
-                            </p>
-                            <p class="card-text">
-                               Category: {{  $room->category }}
-                            </p>
-                            <a href="{{ route('customer.hotel_room_detail', ['room' => $room->id]) }}"
+    <div class="container">
+        <div class="row">
+            @forelse ($rooms as $room)
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                      <img src="{{ asset('storage/owner/hotel/room/' . $room->image) }}"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">
+                            {{ $room->hotel }}
+                        </h5>
+                         <p class="card-text">
+                            Price: {{ 'INR '. $room->price }}
+                        </p>
+                        <p class="card-text">
+                            Category: {{  $room->category }}
+                        </p>
+                        <a href="{{ route('customer.hotel_room_detail', ['room' => $room->id]) }}"
                               class="btn btn-primary">
                                 View Details
                             </a>
-                        </div>
                     </div>
                 </div>
+            </div>
             @empty
-                <div class="text-center">
-                    <h3 class="text-center text-primary">No Rooms Found!!</h3>
-                </div>
+                 <h3 class="text-center text-primary">No Rooms Found!!</h3>
             @endforelse
         </div>
+    </div>
+    <div class="container">
+        {{ $rooms->links() }}
     </div>
 @endsection

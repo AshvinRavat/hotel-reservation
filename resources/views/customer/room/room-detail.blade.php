@@ -3,7 +3,7 @@
   <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ asset('storage/owner/room/'. $room->image) }}" alt="Room Image" class="room-image">
+                <img src="{{ asset('storage/owner/hotel/room/'. $room->image) }}" alt="Room Image" class="room-image">
             </div>
             <div class="col-md-6 text-primary">
                 <h1>Room Details</h1>

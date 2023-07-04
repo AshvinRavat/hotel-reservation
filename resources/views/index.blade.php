@@ -57,42 +57,36 @@
             </div>
         </form>
     </div>
-    <div class="container d-flex justify-content-center">
-        <div class="row pb-4 mb-4">
-            @forelse ($hotels as $hotel)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div>
-                            <img src="{{ asset('storage/hotel/images/' . $hotel->image) }}"
-                                class="img-responsive image">
-                        </div>
-                        <p class="rating">9.2</p>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                {{ $hotel->name }}
-                            </h5>
-                            <p class="card-text"><i class="fa fa-map-marker marker"></i>
-                                {{ $hotel->address_line_1 }}
-                                {{ $hotel->city }}
-                            </p>
-                            <p class="card-text">
-                                <i class="fa fa-star star-rating"></i>
-                                <i class="fa fa-star star-rating"></i>
-                                <i class="fa fa-star star-rating"></i>
-                                <i class="fa fa-star star-rating"></i>
-                            </p>
-                            <p class="card-text">$ 1,399</p>
-                            <a href="{{ route('customer.hotel_rooms', ['hotel' => $hotel->id]) }}"
-                            class="btn btn-primary">View Room</a>
-                        </div>
-                    </div>
-                     <div class="container">
-                        {{ $hotels->links() }}
+    <div class="container">
+        <div class="row gx-5 gy-5">
+            @forelse ($hotels as $hotel )
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                      <img src="{{ asset('storage/hotel/images/' . $hotel->image) }}"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">{{ $hotel->name }}</h5>
+                         <p class="card-text"><i class="fa fa-map-marker marker"></i>
+                            {{ $hotel->address_line_1 }},
+                            {{ $hotel->city }}
+                        </p>
+                         <p class="card-text">
+                            <i class="fa fa-star star-rating"></i>
+                            <i class="fa fa-star star-rating"></i>
+                            <i class="fa fa-star star-rating"></i>
+                            <i class="fa fa-star star-rating"></i>
+                        </p>
+                        <a href="{{ route('customer.hotel_rooms', ['hotel' => $hotel->id]) }}"
+                            class="btn btn-primary">View Rooms</a>
                     </div>
                 </div>
+            </div>
             @empty
-                <h3>No Hotels Found!!</h3>
+                 <h3 class="text-center text-primary">No Hotels Found!!</h3>
             @endforelse
         </div>
+    </div>
+    <div class="container">
+        {{ $hotels->links() }}
     </div>
 @endsection

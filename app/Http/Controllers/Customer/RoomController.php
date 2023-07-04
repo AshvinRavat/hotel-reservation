@@ -30,7 +30,7 @@ class RoomController extends Controller
             $rooms = $rooms->where('categories.id', $request->category_id);
         }
 
-        $rooms = $rooms->paginate(3);
+        $rooms = $rooms->paginate(8);
         return view('customer.room.index', [
             'rooms' => $rooms,
             'hotel_id' => $hotel->id,

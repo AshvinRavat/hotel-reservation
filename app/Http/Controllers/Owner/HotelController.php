@@ -30,7 +30,7 @@ class HotelController extends Controller
             "address_line_2" => ['nullable', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
             "city" => ['required', 'max:50', 'regex:/^([a-zA-Z \']*)$/'],
             "post_code" => ['required', 'digits:6'],
-            "image" => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+            "image" => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:5048']
          ]);
 
         $formData['user_id'] = auth()->user()->id;
@@ -62,7 +62,7 @@ class HotelController extends Controller
             "address_line_2" => ['nullable', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
             "city" => ['required', 'max:50', 'regex:/^([a-zA-Z \']*)$/'],
             "post_code" => ['required', 'digits_between:4,5'],
-            "image" => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+            "image" => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:5048']
          ]);
 
         if ($request->hasFile('image')) {

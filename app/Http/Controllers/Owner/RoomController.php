@@ -39,7 +39,7 @@ class RoomController extends Controller
        $formValidatedData = $request->validated();
 
         $image = $formValidatedData['image'];
-        $image->store('public/owner/room/');
+        $image->store('public/owner/hotel/room/');
         $formValidatedData['image'] = $image->hashName();
 
         $room = new Room();
@@ -63,7 +63,7 @@ class RoomController extends Controller
 
       if ($request->has('image')) {
          $image = $formValidatedData['image'];
-         $image->store('public/owner/room/');
+         $image->store('public/owner/hotel/room/');
          $formValidatedData['image'] = $image->hashName();
       }
 

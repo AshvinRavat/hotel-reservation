@@ -121,12 +121,13 @@
                                     </div>
                                 <div class="col-sm-12">
                                     <label for="image" class="form-label">Image</label>
+                                    <span class="text-danger">*</span>
                                     <input type="file"
                                             class="form-control @error('image') is-invalid @enderror"
                                             id="image"
                                             name="image">
                                     <span class="f-size-12 text-primary">
-                                        (Image allow up to 2 MB)
+                                        (Image allow up to 5 MB)
                                     </span>
                                     @error('image')
                                         <div class="invalid-feedback">{{$message}}</div>

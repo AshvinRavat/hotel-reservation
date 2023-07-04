@@ -31,7 +31,7 @@ class RoomRequest extends FormRequest
             "price" => ['required', 'integer'],
             "max_occupancy" => ['required', 'integer'],
             "description" => ['nullable', 'max:255'],
-            "image" => [$imageRequiredValidation, 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            "image" => [$imageRequiredValidation, 'image', 'mimes:jpeg,png,jpg', 'max:5048'],
         ];
     }
 

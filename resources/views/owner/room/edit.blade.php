@@ -131,7 +131,7 @@
                                         @enderror
                                     </div>
                                 <div class="col-sm-6">
-                                    <img src="{{ asset('storage/owner/room/' . $room->image) }}"
+                                    <img src="{{ asset('storage/owner/hotel/room/' . $room->image) }}"
                                     height="100px">
                                 </div>
                             </div>

@@ -21,7 +21,7 @@ class HotelController extends Controller
             $hotel = $hotel->where('city', 'LIKE', "%$request->search_item%");
         }
 
-        $hotel =$hotel->paginate();
+        $hotel =$hotel->paginate(8);
         return view('index', [
             'hotels' => $hotel,
             'searchedValue' => $searchedValue,

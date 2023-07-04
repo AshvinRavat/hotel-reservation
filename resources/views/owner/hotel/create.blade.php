@@ -34,6 +34,7 @@ Hotel
                                         </div>
                                         <div class="col-sm-6">
                                             <label for="image" class="form-label">Image</label>
+                                            <span class="text-danger">*</span>
                                             <input type="file"
                                                    class="form-control @error('image') is-invalid @enderror"
                                                    id="image"
