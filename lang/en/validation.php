@@ -205,8 +205,13 @@ return [
         'max_occupancy' => [
             'required' => 'Please select max occupancy ',
         ],
+
         'category_id' => [
             'required' => 'Please select category ',
+        ],
+
+        'search_item' => [
+            'required' => 'Please input something to search ',
         ],
     ],
 

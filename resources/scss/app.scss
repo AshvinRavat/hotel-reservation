@@ -79,6 +79,18 @@ body {
     color: #f7b944
 }
 
+// room-detail
+
+ .room-image {
+      width: 100%;
+      height: auto;
+    }
+    .booking-details {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+
 @import "bootstrap/scss/bootstrap";
 @import "login";
 @import "personal-info";
