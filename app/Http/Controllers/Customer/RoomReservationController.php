@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\RoomReservation;
-use App\Models\RoomReservationItem;
 use Illuminate\Http\Request;
 
 class RoomReservationController extends Controller
@@ -41,31 +40,12 @@ class RoomReservationController extends Controller
 
         $roomReservation = new RoomReservation();
 
-        $roomReservationId = $roomReservation->create([
+        $roomReservation = $roomReservation->create([
             'total_amount' => 1500
         ]);
-        $billDetails['room_reservation_id'] = $roomReservationId->id;
 
-        // $roomReservationItem = new RoomReservationItem();
-        // $roomReservationItem->room_reservation_id = 1;
-        // $roomReservationItem->room_id = 1;
-        // $roomReservationItem->user_id = 1;
-        // $roomReservationItem->start_date = '2023 -07 -04';
-        // $roomReservationItem->end_date = '2023 -07 -04';
-        // $roomReservationItem->total_persons = 5;
-        // $roomReservation->roomReservationItems()->save($roomReservationItem);
-
-        $roomReservation->roomReservationItems()->create([
-            'room_reservation_id' => 1,
-            'room_id' => 1,
-            'user_id' => 1,
-            'start_date' => '2023-07-04',
-            'end_date' => '2023-07-04',
-            'total_persons' => 5,
-            'total_rooms' => 1,
-            'price' => 10,
-            'room_reservation_id' => 10,
-        ]);
-
+        $roomReservation
+        ->roomReservationItems()
+        ->create($billDetails);
     }
 }
