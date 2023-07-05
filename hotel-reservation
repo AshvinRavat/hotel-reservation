@@ -23,3 +23,24 @@ status.
 
 // model, migrations, controller,
 // views : bill-page, success.
+
+// reservation flow :
+
+// can be book :
+    // when there is bookign date is available.
+    // can be book by checking date in reservation
+    // ex : if booking is up to  05- 07 -23 then booking start day of customer must be
+    // grater than 05-07
+
+
+    //
+
+// can not book  :
+    // can not book while date is reserved.
+
+// how bill will be generate & list the bill to customers :
+    // total days
+        // calculate days 05 to 06 = 1 day
+    // total amount
+     // days * price
+     // 1 * 1500 = 1500

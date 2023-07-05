@@ -16,14 +16,17 @@
             <strong class="text-primary">Price:</strong> {{ $billDetails['price'] }}
           </div>
           <div class="reservation-value">
-            <strong class="text-primary">Number of Rooms:</strong> {{ 1 }}
+            <strong class="text-primary">Total Rooms:</strong> {{ 1 }}
           </div>
-          <div class="reservation-value">
-            <strong class="text-primary">Number of Persons:</strong> {{ $billDetails['total_persons'] }}
+           <div class="reservation-value">
+            <strong class="text-primary">Total Persons:</strong> {{ $billDetails['total_persons'] }}
+          </div>
+           <div class="reservation-value">
+            <strong class="text-primary">Total Days:</strong> {{ $billDetails['total_days'] }}
           </div>
           <hr>
           <div class="reservation-value d-flex justify-content-between">
-            <h4 class="total-label text-primary">Total Amount: $800</h4>
+            <h4 class="total-label text-primary">Total Amount: {{ $billDetails['total_amount'] }}</h4>
             <span class="total-value text-primary"></span>
           </div>
            <div>
