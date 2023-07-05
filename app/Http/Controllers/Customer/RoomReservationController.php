@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Room;
 use App\Models\RoomReservation;
 use App\Models\RoomReservationItem;
 use Carbon\Carbon;
@@ -19,7 +20,7 @@ class RoomReservationController extends Controller
             'end_date' => ['required', 'date', 'after_or_equal:today', "after_or_equal:$request->start_date"],
             'total_persons' => ['required', 'integer', 'max:50'],
         ]);
-
+        $billDetails['total_rooms'] = 1;
         $isReserved = $this->isReserved($validatedFormData);
 
         if ($isReserved) {
@@ -27,8 +28,56 @@ class RoomReservationController extends Controller
             return back()->with('error', 'Reservation is not available please select other dates');
         }
 
-
         $billDetails = $this->getTotalOfBillAndPutDataToSession($validatedFormData);
+
+        $totalPersons = $validatedFormData['total_persons'];
+        $maxOccupancyOfRoom = $request->max_occupancy;
+
+        if ($totalPersons > $maxOccupancyOfRoom) {
+            $categoryId = $request->category_id;
+
+            $room = new Room();
+            $totalRoomsAvailabel = $room->where('category_id', $categoryId)
+            ->count('id');
+
+            //count total room to be required
+            $totalRoomsRequired = $totalPersons / $maxOccupancyOfRoom;
+            $isRoomsNotAvailable = $totalRoomsAvailabel < $totalRoomsRequired;
+
+            if ($isRoomsNotAvailable) {
+                $request->flash();
+                return back()->with('error', 'Rooms not available');
+            }
+
+            $roomIds = $room->where('category_id', $categoryId)->get(['id']);
+
+            $startDate =  $validatedFormData['start_date'];
+            $endDate =  $validatedFormData['end_date'];
+
+            $isReserved = RoomReservationItem::whereIn('room_id',$roomIds)
+            ->where(function ($query) use ($startDate, $endDate) {
+                $query->where(function ($q2) use ($startDate) {
+                    $q2->where('start_date', '<=', $startDate);
+                    $q2->where('end_date', '>=', $startDate);
+                });
+                $query->orWhere(function ($q3) use ($endDate) {
+                    $q3->where('start_date', '<=', $endDate);
+                    $q3->where('end_date', '>=', $endDate);
+                });
+                $query->orWhere(function ($query1) use ($startDate, $endDate) {
+                    $query1->where('end_date', '<=', $endDate);
+                    $query1->where('start_date', '>=', $startDate);
+                });
+            })->count();
+
+            if ($isReserved) {
+                $request->flash();
+                return back()->with('error', 'Reservation is not available please select other dates');
+            }
+            $updatedPrice = $totalRoomsAvailabel * $validatedFormData['price'];
+            $billDetails['total_rooms'] = $totalRoomsAvailabel;
+            $billDetails['total_amount'] = $billDetails['total_days'] * $updatedPrice;
+        }
 
         return view('customer.room.bill-details', [
             'billDetails' => $billDetails

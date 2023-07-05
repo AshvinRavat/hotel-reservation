@@ -33,29 +33,22 @@ status.
      // days * price
      // 1 * 1500 = 1500
 
+// booing details update
+    // get more room as per the requirements
+        // if there is requirment for 5 peolpes and there is capcity of 4 peolple than book room
+        //according to it
 
-// can be book :
-   // when booking date is available
-        // if there is booking from 10-07 to 15-7 then
-            // from current date 5-07 to up to 9-7 booking can be possible
+// first check number of guest grater than max occupied
+    // if not than done.
+    // if yes then take category ids and get all related room from room table using id
+        // if there is no categeory id then done with "no rooms avabile".
+        // if yes than check for requriement of rooms
+            // checking requirement of room : requirments = total person / max occupanncy
 
-// can not book  :
-    // can not book while date is reserved.
+            // if total rooms gratert or equal than room can availbe othrewise no rooms avalilbe
+            // get room ids from that table and now check in the reservation table
+                again check with dates for all those ids//
 
-
-// how to do & dont make booking logic :
-
-// jo 5 to 10 booking
-    // if 11 to 15 booking is poosbile
-
-    Chekcing Booking available afte all reservation
-    end_date on reservation is = 10;
-    start_date from user is = 11;
-    cheking by compare with edn date
-        end_date > start_date
-        10 > 11 not
-        10 == 11 not
-
-        if returns false negative value means there is no booking is available so we can book
-
-      
+            /price
+            / rooms
+            total amount

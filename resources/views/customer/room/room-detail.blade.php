@@ -22,6 +22,8 @@
                         @csrf
                         <input type="hidden" name="room_id" value="{{ $room->id }}">
                         <input type="hidden" name="price" value="{{ $room->price }}">
+                        <input type="hidden" name="max_occupancy" value="{{ $room->max_occupancy }}">
+                        <input type="hidden" name="category_id" value="{{ $room->category_id }}">
                         <div class="form-group">
                         <label for="check-in">Check-in Date:</label>
                         <input type="date"

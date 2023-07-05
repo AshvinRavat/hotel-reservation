@@ -16,7 +16,7 @@
             <strong class="text-primary">Price:</strong> {{ $billDetails['price'] }}
           </div>
           <div class="reservation-value">
-            <strong class="text-primary">Total Rooms:</strong> {{ 1 }}
+            <strong class="text-primary">Total Rooms:</strong> {{ $billDetails['total_rooms'] }}
           </div>
            <div class="reservation-value">
             <strong class="text-primary">Total Persons:</strong> {{ $billDetails['total_persons'] }}
