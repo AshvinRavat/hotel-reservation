@@ -90,7 +90,30 @@ body {
       border: 1px solid #ccc;
       padding: 20px;
     }
+// bill-details
 
+.reservation-container {
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .reservation-label {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .reservation-value {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .total-label {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .total-value {
+      font-size: 24px;
+      color: #007bff;
+    }
 @import "bootstrap/scss/bootstrap";
 @import "login";
 @import "personal-info";
