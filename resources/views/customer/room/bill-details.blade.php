@@ -31,7 +31,7 @@
           </div>
            <div>
                 @csrf
-                <a href="{{route('customer.confirm_reservation')}}" class="btn btn-primary mb-0">
+                <a href="{{ route('customer.confirm_reservation')}}" class="btn btn-primary mb-0">
                     Confirm & Reserve
                 </a>
                 <a href="{{route('index')}}" class="btn btn-danger mb-0">

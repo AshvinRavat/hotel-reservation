@@ -20,12 +20,13 @@ class RoomReservationController extends Controller
             'total_persons' => ['required', 'integer', 'max:50'],
         ]);
 
-       $reservationNotAvaliable = $this->reservationAvailable($validatedFormData);
+        $isReserved = $this->isReserved($validatedFormData);
 
-        if ($reservationNotAvaliable) {
+        if ($isReserved) {
             $request->flash();
             return back()->with('error', 'Reservation is not available please select other dates');
         }
+
 
         $billDetails = $this->getTotalOfBillAndPutDataToSession($validatedFormData);
 
@@ -51,17 +52,30 @@ class RoomReservationController extends Controller
         return to_route('customer.reservation_success');
     }
 
-    public function reservationAvailable($billDetails)
+    public function isReserved($billDetails)
     {
-        $roomReservation = new RoomReservationItem();
+        $startDate =  $billDetails['start_date'];
+        $endDate =  $billDetails['end_date'];
 
-        $reservationNotAvaliable = $roomReservation->where('end_date', '>=', $billDetails['start_date'])
-        ->where('room_id', $billDetails['room_id'])
-        ->select(['end_date'])
-        ->count();
+        $isReserved = RoomReservationItem::where('room_id', $billDetails['room_id'])
+        ->where(function ($query) use ($startDate, $endDate) {
+            $query->where(function ($q2) use ($startDate) {
+                $q2->where('start_date', '<=', $startDate);
+                $q2->where('end_date', '>=', $startDate);
+            });
+            $query->orWhere(function ($q3) use ($endDate) {
+                $q3->where('start_date', '<=', $endDate);
+                $q3->where('end_date', '>=', $endDate);
+            });
+            $query->orWhere(function ($query1) use ($startDate, $endDate) {
+                $query1->where('end_date', '<=', $endDate);
+                $query1->where('start_date', '>=', $startDate);
+            });
+        })->count();
 
-        return $reservationNotAvaliable;
+        return $isReserved;
     }
+
 
     public function getTotalOfBillAndPutDataToSession($validatedFormData)
     {

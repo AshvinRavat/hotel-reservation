@@ -26,9 +26,10 @@ Route::get('hotel/room/{room}', [CustomerRoomController::class, 'viewRoomDetails
 
 
 Route::post('/get-booking-details', [RoomReservationController::class, 'getBookingDetailsAndCreatingBill'])->name('customer.reservation');
-Route::get('/confirm-booking', [RoomReservationController::class, 'confirmBookingAndReservation'])->name('customer.confirm_reservation');
+Route::get('/confirm-booking', [RoomReservationController::class, 'confirmBookingAndReservation'])
+->name('customer.confirm_reservation');
 
-Route::get('/confirm-booking', [RoomReservationController::class, 'reservationSuccess'])->name('customer.reservation_success');
+Route::get('/customer/reservation/success', [RoomReservationController::class, 'reservationSuccess'])->name('customer.reservation_success');
 
 Route::middleware(['auth', 'verified'])->controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'edit')->name('profile.edit');
