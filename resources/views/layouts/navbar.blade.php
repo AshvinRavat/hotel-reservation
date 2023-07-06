@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary float-left">
     <div class="container-fluid">
-        <a class="navbar-brand text-primary" href="#">Hotel Reservation</a>
+        <a class="navbar-brand text-primary" href="{{ route('index') }}">Hotel Reservation</a>
         <button class="navbar-toggler bg-light"
             type="button"
             data-bs-toggle="collapse"

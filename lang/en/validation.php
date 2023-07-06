@@ -213,6 +213,20 @@ return [
         'search_item' => [
             'required' => 'Please input something to search ',
         ],
+
+        'start_date' => [
+            'required' => 'Please select start date',
+            'after_or_equal' => 'Start date should not be past dates',
+        ],
+
+        'end_date' => [
+            'required' => 'Please select end date',
+            'after_or_equal' => 'End date should not be past dates and must be grater than or equal to start date',
+        ],
+
+        'total_persons' => [
+            'max' => 'Number of guest should not be grater than 50'
+        ],
     ],
 
     /*

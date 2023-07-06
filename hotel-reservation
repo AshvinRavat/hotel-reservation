@@ -1,25 +1,20 @@
-// Reservation
+// start date
+// end date
+// total days
+// total persons
+// total rooms
+// 
 
-// Room Details. -> room_id, get directly
-// Hotel Details -> hotel_id, get directly via room_id
-// StartDate To End Date. -> via form get directly.
-// Total Persons. -> via form get directly.
-// Total Rooms. -> via form & make logic
-// Total Amount. -> via form make logic for this
-// Status. -> default base on the room by owner.
+if only 1 room
+// price
 
+total amount of rooms : 15 * total days =
+(total amount of rooms count based on total room prices)
 
-Table Structure :: room-reservations
-id,
-room id,
-customer_id,
-start_date,
-end_date,
-total_persons,
-total_rooms,
-total_amount,
-status.
+view price details if (rooms grater than 1)
 
+for each rooms
+room-image
+hotel name price
 
-// model, migrations, controller,
-// views : bill-page, success.
+total rooms total price 15 + 15 = 30
