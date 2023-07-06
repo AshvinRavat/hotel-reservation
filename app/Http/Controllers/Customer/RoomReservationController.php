@@ -7,6 +7,7 @@ use App\Models\Room;
 use App\Models\RoomReservation;
 use App\Models\RoomReservationItem;
 use Carbon\Carbon;
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Http\Request;
 
 class RoomReservationController extends Controller
@@ -20,8 +21,9 @@ class RoomReservationController extends Controller
             'end_date' => ['required', 'date', 'after_or_equal:today', "after_or_equal:$request->start_date"],
             'total_persons' => ['required', 'integer', 'max:50'],
         ]);
-        $billDetails['total_rooms'] = 1;
+        $roomsDetails = '';
         $isReserved = $this->isReserved($validatedFormData);
+
 
         if ($isReserved) {
             $request->flash();
@@ -30,6 +32,7 @@ class RoomReservationController extends Controller
 
         $billDetails = $this->getTotalOfBillAndPutDataToSession($validatedFormData);
 
+        $billDetails['total_rooms'] = 1;
         $totalPersons = $validatedFormData['total_persons'];
         $maxOccupancyOfRoom = $request->max_occupancy;
 
@@ -74,29 +77,75 @@ class RoomReservationController extends Controller
                 $request->flash();
                 return back()->with('error', 'Reservation is not available please select other dates');
             }
-            $updatedPrice = $totalRoomsAvailabel * $validatedFormData['price'];
-            $billDetails['total_rooms'] = $totalRoomsAvailabel;
-            $billDetails['total_amount'] = $billDetails['total_days'] * $updatedPrice;
+            else {
+                $roomsDetails = $room->where('category_id', $categoryId)
+                ->join('hotels', 'hotels.id', '=', 'rooms.hotel_id')
+                ->select([
+                    'hotels.name as hotel',
+                    'rooms.image', 'rooms.price', 'rooms.id as room_id'
+                ])->get();
+
+                $roomPrices = [];
+                $roomIds = [];
+
+                foreach ($roomsDetails as $roomsDetail) {
+                    $roomIds[] = $roomsDetail['room_id'];
+                    $roomPrices[] = $roomsDetail['price'];
+                }
+                $roomPricesEachRoom = $roomPrices;
+                $roomPrices = collect($roomPrices);
+                $totalRoomPrices = $roomPrices->sum();
+
+                $billDetails['total_rooms'] = $totalRoomsAvailabel;
+                $billDetails['total_amount'] = $billDetails['total_days'] * $totalRoomPrices;
+                $billDetails['total_amount_by_rooms'] = $totalRoomPrices;
+
+                $billDetails['room_id'] = $roomIds;
+                $billDetails['price'] = $roomPricesEachRoom;
+                session()->put('billDetails', $billDetails);
+            }
         }
 
         return view('customer.room.bill-details', [
-            'billDetails' => $billDetails
+            'billDetails' => $billDetails,
+            'roomsDetails' => $roomsDetails
         ]);
     }
 
     public function confirmBookingAndReservation()
     {
         $billDetails = session()->get('billDetails');
-        $billDetails['user_id'] = auth()->user()->id;
-        $billDetails['total_rooms'] = 1;
 
+        $billDetails['user_id'] = auth()->user()->id;
         $roomReservation = new RoomReservation();
 
         $roomReservation = $roomReservation->create([
             'total_amount' => $billDetails['total_amount']
         ]);
 
-        $roomReservation->roomReservationItems()->create($billDetails);
+        $totalRooms = 0;
+        if (is_array($billDetails['room_id'])) {
+            $totalRooms = count($billDetails['room_id']);
+            $updateBillDetails = [];
+        }
+        if ($totalRooms > 1) {
+            for ($count = 0; $count <$totalRooms; $count++) {
+                array_push($updateBillDetails, [
+                    'room_id' => $billDetails['room_id'][$count],
+                    'price' => $billDetails['price'][$count],
+                    'user_id' => $billDetails['user_id'],
+                    'start_date' => $billDetails['start_date'],
+                    'end_date' => $billDetails['end_date'],
+                    'total_persons' => $billDetails['total_persons'],
+                    'total_rooms' => $billDetails['total_rooms'],
+                ]);
+                $roomReservation->roomReservationItems()->create($updateBillDetails[$count]);
+            }
+        }
+        else  {
+            $billDetails['total_rooms'] = 1;
+            $roomReservation->roomReservationItems()->create($billDetails);
+        }
 
         return to_route('customer.reservation_success');
     }

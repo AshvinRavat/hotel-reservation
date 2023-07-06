@@ -1,54 +1,20 @@
-// Reservation
+// start date
+// end date
+// total days
+// total persons
+// total rooms
+// 
 
-// Room Details. -> room_id, get directly
-// Hotel Details -> hotel_id, get directly via room_id
-// StartDate To End Date. -> via form get directly.
-// Total Persons. -> via form get directly.
-// Total Rooms. -> via form & make logic
-// Total Amount. -> via form make logic for this
-// Status. -> default base on the room by owner.
+if only 1 room
+// price
 
+total amount of rooms : 15 * total days =
+(total amount of rooms count based on total room prices)
 
-Table Structure :: room-reservations
-id,
-room id,
-customer_id,
-start_date,
-end_date,
-total_persons,
-total_rooms,
-total_amount,
-status.
+view price details if (rooms grater than 1)
 
+for each rooms
+room-image
+hotel name price
 
-// model, migrations, controller,
-// views : bill-page, success.
-
-// reservation flow :
-
-// how bill will be generate & list the bill to customers :
-    // total days
-        // calculate days 05 to 06 = 1 day
-    // total amount
-     // days * price
-     // 1 * 1500 = 1500
-
-// booing details update
-    // get more room as per the requirements
-        // if there is requirment for 5 peolpes and there is capcity of 4 peolple than book room
-        //according to it
-
-// first check number of guest grater than max occupied
-    // if not than done.
-    // if yes then take category ids and get all related room from room table using id
-        // if there is no categeory id then done with "no rooms avabile".
-        // if yes than check for requriement of rooms
-            // checking requirement of room : requirments = total person / max occupanncy
-
-            // if total rooms gratert or equal than room can availbe othrewise no rooms avalilbe
-            // get room ids from that table and now check in the reservation table
-                again check with dates for all those ids//
-
-            /price
-            / rooms
-            total amount
+total rooms total price 15 + 15 = 30
