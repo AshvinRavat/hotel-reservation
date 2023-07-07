@@ -18,4 +18,14 @@ class Room extends Model
         'max_occupancy',
         'description',
     ];
+
+    public function roomReservationItem()
+    {
+        return $this->hasMany(RoomReservationItem::class, 'room_id', 'id');
+    }
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class, 'hotel_id', 'id');
+    }
 }

@@ -7,6 +7,6 @@ Success
     <h1 class="text-primary text-center">Congratulations</h1>
     <h6 class="text-center text-primary mt-4">You made Reservation Request successfully,</h6>
     <h6 class="text-center text-primary mb-4">Please wait for official confirmation from the owner</h6>
-    <button class="btn btn-primary">View Reservation</button>
+    <a class="btn btn-primary" href="{{ route('customer.reservations_index') }}">View Reservation</a>
 </div>
 @endsection

@@ -6,6 +6,7 @@ use App\Http\Controllers\Customer\RoomReservationController;
 use App\Http\Controllers\Owner\BecomeOwnerController;
 use App\Http\Controllers\Owner\HotelController;
 use App\Http\Controllers\Owner\RoomController;
+use App\Http\Controllers\Owner\RoomReservationController as OwnerRoomReservationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,16 @@ Route::get('/confirm-booking', [RoomReservationController::class, 'confirmBookin
 ->name('customer.confirm_reservation');
 
 Route::get('/customer/reservation/success', [RoomReservationController::class, 'reservationSuccess'])->name('customer.reservation_success');
+
+
+Route::middleware(['auth', 'verified'])->name('customer.')->group(function (){
+
+    Route::prefix('reservations')
+    ->name('reservations_')->controller(RoomReservationController::class)->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::get('/reservation-details/{reservation}', 'reservationDetail')->name('detail');
+    });
+});
 
 Route::middleware(['auth', 'verified'])->controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'edit')->name('profile.edit');
@@ -64,6 +75,14 @@ Route::prefix('owner')->middleware(['auth', 'verified'])->name('owner.')->group(
         Route::get('edit/{room}', 'edit')->name('edit');
         Route::post('update/{room}', 'update')->name('update');
         Route::post('delete/{room}', 'delete')->name('delete');
+    });
+
+    Route::prefix('/reservations')->name('reservations_')
+    ->controller(OwnerRoomReservationController::class)
+    ->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::get('order-detail/{reservation}', 'orderDetail')->name('order_detail');
+        Route::post('/update-reservation-status', 'updateReservationStatus')->name('update_reservation_status');
     });
 });
 

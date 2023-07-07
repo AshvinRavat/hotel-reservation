@@ -11,7 +11,7 @@ class RoomReservation extends Model
 
     protected $fillable = [
         'total_amount',
-        'status'
+        'status',
     ];
 
     public function roomReservationItems() {

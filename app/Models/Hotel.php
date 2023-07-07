@@ -20,4 +20,8 @@ class Hotel extends Model
         'post_code'
     ];
 
+    public function rooms() {
+        return $this->hasMany(Room::class, 'hotel_id', 'id');
+    }
+
 }

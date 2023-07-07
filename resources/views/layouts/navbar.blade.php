@@ -11,12 +11,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            @auth
             <ul class="navbar-nav me-auto mb-2 mb-lg-0  list-group">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href=""></a>
+                    <a class="nav-link active text-primary"
+                        aria-current="page"
+                        href="{{ route('customer.reservations_index') }}">Reservations
+                    </a>
                 </li>
             </ul>
-            @auth
+
                 <a class="me-2 btn btn-primary" href="{{ route('become_owner_index') }}">
                     Switch to Owner
                 </a>
