@@ -23,6 +23,11 @@
                         Rooms
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-primary" href="{{ route('owner.reservations_index') }}">
+                        Reservations
+                    </a>
+                </li>
             </ul>
             @auth
                 <a class="me-2 btn btn-primary" href="{{ '/' }}">

@@ -20,7 +20,16 @@ class RoomReservationItem extends Model
         'price',
     ];
 
-    public function RoomReservation() {
-        return $this->belongsTo(RoomReservation::class);
+    public function rooms() {
+        return $this->belongsTo(Room::class, 'room_id', 'id');
     }
+
+    public function roomReservations() {
+        return $this->belongsTo(RoomReservation::class, 'room_reservation_id', 'id');
+    }
+
+    public function users() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
 }

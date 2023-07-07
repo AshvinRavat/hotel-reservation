@@ -12,6 +12,38 @@ use Illuminate\Http\Request;
 
 class RoomReservationController extends Controller
 {
+    public function index()
+    {
+        $roomReservations = RoomReservation::with([
+            'roomReservationItems' => [
+                'rooms' => [
+                    'hotel'
+                ]
+            ]
+        ])->get();
+
+        return view('customer.reservation.index', [
+           'roomReservations' =>  $roomReservations
+        ]);
+    }
+
+    public function reservationDetail(RoomReservation $reservation)
+    {
+        $reservation = $reservation->with([
+            'roomReservationItems' => [
+                'rooms' => [
+                    'hotel'
+                ],
+                'users'
+            ]
+        ])
+        ->where('id', $reservation->id)
+        ->get();
+         return view('customer.reservation.reservation-detail', [
+            'reservationDetails' => $reservation
+         ]);
+    }
+
     public function getBookingDetailsAndCreatingBill(Request $request)
     {
         $validatedFormData = $request->validate([

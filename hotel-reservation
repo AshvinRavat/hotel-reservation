@@ -1,20 +1,23 @@
-// start date
-// end date
-// total days
-// total persons
-// total rooms
-// 
+// reservations :
 
-if only 1 room
-// price
+list reservation
 
-total amount of rooms : 15 * total days =
-(total amount of rooms count based on total room prices)
+// room details
+// hotel details
+// customer detail
 
-view price details if (rooms grater than 1)
+// order details :
 
-for each rooms
-room-image
-hotel name price
+total_amount,
+Status,
+Total Persons: 2
+Rooms: 1
 
-total rooms total price 15 + 15 = 30
+Customer Details :
+customer name
+contact,
+Address Details
+
+room details :
+room-image,
+price,
