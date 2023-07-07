@@ -10,6 +10,7 @@
                     method="POST"
                     enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="id" value="{{ $room->id }}">
                     <div class="borrower-cnt business-cnt">
                         <div class="d-flex justify-content-between">
                             <h4 class="text-primary">Room Management</h4>
@@ -17,6 +18,7 @@
                         <div class="business-detail pt-4" id="prefill_address">
                             <div class="mb-4">
                                 <div class="row">
+
                                     <div class="col-sm-6 mb-sm-0 mb-4">
                                         <label for="hotel-id" class="form-label">
                                             Select Hotel<span class="text-danger">*</span>
@@ -82,22 +84,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-sm-12 mb-sm-0 pb-3">
-                                    <label for="description" class="form-label">
-                                        Description
-                                    </label>
-                                    <textarea type="text"
-                                            class="form-control @error('description') is-invalid @enderror"
-                                            id="description"
-                                            name="description"
-                                            >{{old('description',  $room->description)}}
-                                    </textarea>
-                                    @error('description')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-12 mb-sm-0 mb-4">
-                                        <label for="category-id" class="form-label">
+                                <div class="row mt-3 mb-3">
+                                    <div class="col-sm-6 mb-sm-0 mb-4">
+                                        <label for="total-rooms" class="form-label">
+                                            Total Rooms<span class="text-danger">*</span>
+                                        </label>
+                                        <input type="number"
+                                            class="form-control @error('total_rooms') is-invalid @enderror"
+                                            id="total-rooms"
+                                            name="total_rooms"
+                                            value="{{old('price',  $room->total_rooms)}}">
+                                        @error('total_rooms')
+                                            <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-6 mb-sm-0 mb-4">
+                                         <label for="category-id" class="form-label">
                                             Room Category
                                             <span class="text-danger">*</span>
                                         </label>
@@ -116,6 +118,22 @@
                                             <div class="invalid-feedback">{{$message}}</div>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-sm-12 mb-sm-0 pb-3">
+                                    <label for="description" class="form-label">
+                                        Description
+                                    </label>
+                                    <textarea type="text"
+                                            class="form-control @error('description') is-invalid @enderror"
+                                            id="description"
+                                            name="description"
+                                            >{{old('description',  $room->description)}}
+                                    </textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
+                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label for="image" class="form-label">Image</label>

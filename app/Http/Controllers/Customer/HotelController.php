@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
-    public function index(Request $request) {
-
+    public function index(Request $request)
+    {
+        // fetch rooms directly
         $searchedValue = $request->search_item ?? '';
         $hotel = new Hotel();
         $hotel = $hotel->select(['*']);
@@ -18,10 +19,12 @@ class HotelController extends Controller
             $request->validate([
                 'search_item' => ['required']
             ]);
+
             $hotel = $hotel->where('city', 'LIKE', "%$request->search_item%");
         }
 
-        $hotel =$hotel->paginate(8);
+        $hotel = $hotel->paginate(8);
+
         return view('index', [
             'hotels' => $hotel,
             'searchedValue' => $searchedValue,

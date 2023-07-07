@@ -1,23 +1,13 @@
-// reservations :
+// changes
 
-list reservation
+// list rooms directly not via hotels
+// searching, filtering, allow to insert total guests & childe adults as well,
+// include map
+// add more details about rooms
 
-// room details
-// hotel details
-// customer detail
 
-// order details :
+// on rooms give quantity so customer can identify how many rooms available
+// adding link in the rooms
 
-total_amount,
-Status,
-Total Persons: 2
-Rooms: 1
-
-Customer Details :
-customer name
-contact,
-Address Details
-
-room details :
-room-image,
-price,
+// quantity For Rooms :
+    like how many types of rooms are there.

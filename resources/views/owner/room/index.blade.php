@@ -29,6 +29,7 @@ room
                     <th scope="col">Room Number</th>
                     <th scope="col">Price</th>
                     <th scope="col">Max Occupancy</th>
+                    <th scope="col">Total Rooms</th>
                     <th scope="col">Description</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -41,6 +42,7 @@ room
                         <th>{{ $room->room_number }}</th>
                         <th>{{ $room->price }}</th>
                         <th>{{ $room->max_occupancy }}</th>
+                        <th>{{ $room->total_rooms }}</th>
                         <th>{{ $room->description }}</th>
                         <th>
                             <a href="{{ route('owner.room_edit', ['room' => $room->id]) }}">

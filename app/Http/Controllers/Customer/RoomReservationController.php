@@ -7,7 +7,6 @@ use App\Models\Room;
 use App\Models\RoomReservation;
 use App\Models\RoomReservationItem;
 use Carbon\Carbon;
-use Hamcrest\Arrays\IsArray;
 use Illuminate\Http\Request;
 
 class RoomReservationController extends Controller
@@ -39,9 +38,9 @@ class RoomReservationController extends Controller
         ])
         ->where('id', $reservation->id)
         ->get();
-         return view('customer.reservation.reservation-detail', [
-            'reservationDetails' => $reservation
-         ]);
+        return view('customer.reservation.reservation-detail', [
+           'reservationDetails' => $reservation
+        ]);
     }
 
     public function getBookingDetailsAndCreatingBill(Request $request)
@@ -68,6 +67,7 @@ class RoomReservationController extends Controller
         $totalPersons = $validatedFormData['total_persons'];
         $maxOccupancyOfRoom = $request->max_occupancy;
 
+
         if ($totalPersons > $maxOccupancyOfRoom) {
             $categoryId = $request->category_id;
 
@@ -89,7 +89,7 @@ class RoomReservationController extends Controller
             $startDate =  $validatedFormData['start_date'];
             $endDate =  $validatedFormData['end_date'];
 
-            $isReserved = RoomReservationItem::whereIn('room_id',$roomIds)
+            $isReserved = RoomReservationItem::whereIn('room_id', $roomIds)
             ->where(function ($query) use ($startDate, $endDate) {
                 $query->where(function ($q2) use ($startDate) {
                     $q2->where('start_date', '<=', $startDate);
@@ -108,8 +108,7 @@ class RoomReservationController extends Controller
             if ($isReserved) {
                 $request->flash();
                 return back()->with('error', 'Reservation is not available please select other dates');
-            }
-            else {
+            } else {
                 $roomsDetails = $room->where('category_id', $categoryId)
                 ->join('hotels', 'hotels.id', '=', 'rooms.hotel_id')
                 ->select([
@@ -173,8 +172,7 @@ class RoomReservationController extends Controller
                 ]);
                 $roomReservation->roomReservationItems()->create($updateBillDetails[$count]);
             }
-        }
-        else  {
+        } else {
             $billDetails['total_rooms'] = 1;
             $roomReservation->roomReservationItems()->create($billDetails);
         }

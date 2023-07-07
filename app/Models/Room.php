@@ -17,6 +17,7 @@ class Room extends Model
         'price',
         'max_occupancy',
         'description',
+        'total_rooms',
     ];
 
     public function roomReservationItem()
