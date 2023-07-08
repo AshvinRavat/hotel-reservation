@@ -9,5 +9,7 @@
 // on rooms give quantity so customer can identify how many rooms available
 // adding link in the rooms
 
-// quantity For Rooms :
-    like how many types of rooms are there.
+// list rooms directly :
+    get all rooms and that room's hotel
+    get more details about rooms.
+    

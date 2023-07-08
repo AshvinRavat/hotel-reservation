@@ -21,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CustomerHotelController::class, 'index'])->name('index');
-Route::get('hotel/{hotel}/rooms', [CustomerRoomController::class, 'index'])->name('customer.hotel_rooms');
-Route::get('hotel/room/{room}', [CustomerRoomController::class, 'viewRoomDetails'])->name('customer.hotel_room_detail');
+Route::get('/', [CustomerRoomController::class, 'index'])->name('index');
+Route::get('room/{room}/room-details', [CustomerRoomController::class, 'roomDetails'])->name('customer_room_detail');
 
 
 Route::post('/get-booking-details', [RoomReservationController::class, 'getBookingDetailsAndCreatingBill'])->name('customer.reservation');

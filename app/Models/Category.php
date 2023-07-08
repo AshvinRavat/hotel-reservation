@@ -10,4 +10,8 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function rooms() {
+        return $this->belongsTo(Room::class);
+    }
 }

@@ -4,14 +4,18 @@
      @include('layouts.alert')
      <div class="row">
         <div class="col-md-6">
-            <img src="{{ asset('storage/owner/hotel/room/'. $room->image) }}" alt="Room Image" class="room-image">
+            <img src="{{ asset('storage/owner/hotel/room/'. $roomDetail->image) }}" alt="Room Image" class="room-image">
         </div>
         <div class="col-md-6 text-primary">
             <h1>Room Details</h1>
-            <p>Room Category: {{ $room->category }}</p>
-            <p>Max Occupancy: {{ $room->max_occupancy }}</p>
-            <p>Amenities: Wi-Fi, TV, Air Conditioning, Mini-Fridge</p>
-            <p>Price : {{ $room->price }}</p>
+            <h5>{{ $roomDetail->hotel->name }}</h5>
+            <p> Location <i class="fa fa-map-marker marker"></i>
+                : {{ $roomDetail->hotel->address_line_1 }}, {{$roomDetail->hotel->city}}</p>
+            <p class="pt-2">Room Category: {{ $roomDetail->category->name }}</p>
+            <p>Max Occupancy: {{ $roomDetail->max_occupancy }}</p>
+            <p>Total Rooms: {{ $roomDetail->total_rooms }}</p>
+            <p>Price : {{ $roomDetail->price }}</p>
+            <p>About : {{ $roomDetail->description }}</p>
         </div>
     </div>
         <div class="row">
@@ -20,10 +24,10 @@
                     <h2>Booking Details</h2>
                     <form action="{{ route('customer.reservation') }}" method="post">
                         @csrf
-                        <input type="hidden" name="room_id" value="{{ $room->id }}">
-                        <input type="hidden" name="price" value="{{ $room->price }}">
-                        <input type="hidden" name="max_occupancy" value="{{ $room->max_occupancy }}">
-                        <input type="hidden" name="category_id" value="{{ $room->category_id }}">
+                        <input type="hidden" name="room_id" value="{{ $roomDetail->id }}">
+                        <input type="hidden" name="price" value="{{ $roomDetail->price }}">
+                        <input type="hidden" name="max_occupancy" value="{{ $roomDetail->max_occupancy }}">
+                        <input type="hidden" name="category_id" value="{{ $roomDetail->category_id }}">
                         <div class="form-group">
                         <label for="check-in">Check-in Date:</label>
                         <input type="date"
