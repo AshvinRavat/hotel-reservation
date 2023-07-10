@@ -21,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CustomerHotelController::class, 'index'])->name('index');
-Route::get('hotel/{hotel}/rooms', [CustomerRoomController::class, 'index'])->name('customer.hotel_rooms');
-Route::get('hotel/room/{room}', [CustomerRoomController::class, 'viewRoomDetails'])->name('customer.hotel_room_detail');
+Route::get('/', [CustomerRoomController::class, 'index'])->name('index');
+Route::get('room/{room}/room-details', [CustomerRoomController::class, 'roomDetails'])->name('customer_room_detail');
 
 
 Route::post('/get-booking-details', [RoomReservationController::class, 'getBookingDetailsAndCreatingBill'])->name('customer.reservation');
@@ -33,8 +32,7 @@ Route::get('/confirm-booking', [RoomReservationController::class, 'confirmBookin
 Route::get('/customer/reservation/success', [RoomReservationController::class, 'reservationSuccess'])->name('customer.reservation_success');
 
 
-Route::middleware(['auth', 'verified'])->name('customer.')->group(function (){
-
+Route::middleware(['auth', 'verified'])->name('customer.')->group(function () {
     Route::prefix('reservations')
     ->name('reservations_')->controller(RoomReservationController::class)->group(function () {
         Route::get('', 'index')->name('index');

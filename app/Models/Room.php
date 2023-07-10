@@ -17,6 +17,7 @@ class Room extends Model
         'price',
         'max_occupancy',
         'description',
+        'total_rooms',
     ];
 
     public function roomReservationItem()
@@ -27,5 +28,9 @@ class Room extends Model
     public function hotel()
     {
         return $this->belongsTo(Hotel::class, 'hotel_id', 'id');
+    }
+
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 }

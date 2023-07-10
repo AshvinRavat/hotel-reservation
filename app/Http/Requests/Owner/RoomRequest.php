@@ -4,6 +4,7 @@ namespace App\Http\Requests\Owner;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 
 class RoomRequest extends FormRequest
 {
@@ -27,9 +28,10 @@ class RoomRequest extends FormRequest
         return [
             'hotel_id' => ['required'],
             'category_id' => ['required'],
-            'room_number' => ['required', 'string', 'max:12', 'regex:/^([a-zA-Z0-9 \']*)$/', 'unique:rooms,room_number'],
+            'room_number' => ['required', 'string', 'max:12', 'regex:/^([a-zA-Z0-9 \']*)$/',Rule::unique('rooms')->ignore($this->id)],
             "price" => ['required', 'integer'],
             "max_occupancy" => ['required', 'integer'],
+            "total_rooms" => ['required', 'integer'],
             "description" => ['nullable', 'max:255'],
             "image" => [$imageRequiredValidation, 'image', 'mimes:jpeg,png,jpg', 'max:5048'],
         ];
