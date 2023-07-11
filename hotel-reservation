@@ -1,6 +1,5 @@
 // changes
 
-// list rooms directly not via hotels
 // searching, filtering, allow to insert total guests & childe adults as well,
 // include map
 // add more details about rooms
@@ -8,8 +7,3 @@
 
 // on rooms give quantity so customer can identify how many rooms available
 // adding link in the rooms
-
-// list rooms directly :
-    get all rooms and that room's hotel
-    get more details about rooms.
-    

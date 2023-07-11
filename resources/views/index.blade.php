@@ -1,6 +1,42 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        <div class="row ">
+            <div class="col-6 mb-2">
+                <div class="form-group">
+                    <label for="address-input">Location</label>
+                    <input type="text" id="address-input" name="address_address" class="form-control map-input">
+                    <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                    <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                </div>
+            </div>
+            <div class="col-6 mb-2">
+                <div class="form-group">
+                    <label for="number-of-guest">Number of Guest</label>
+                    <input type="text" id="number-of-guest" name="number-of-guest" class="form-control map-input">
+                    <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                    <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex mb-4 mt-2">
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Select Room Category</option>
+                </select>
+            </div>
+            <div class="col-8">
+                <input type="text" id="datepicker" class="ms-2" name="datepicker" value="Check-in">
+                <input type="text" id="datepicker1" name="datepicker" value="Check-out">
+                <input type="submit" class="btn btn-primary ms-2" value="Search">
+            </div>
+        </div>
+        <div id="address-map-container" style="width:100%;height:400px; ">
+            <div style="width: 100%; height: 100%" id="address-map"></div>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="row gy-5">
             @forelse ($rooms as $room)
                 <div class="col-3">

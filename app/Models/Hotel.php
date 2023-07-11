@@ -17,7 +17,9 @@ class Hotel extends Model
         'address_line_1',
         'address_line_2',
         'city',
-        'post_code'
+        'post_code',
+        'address_latitude',
+        'address_longitude',
     ];
 
     public function rooms() {
