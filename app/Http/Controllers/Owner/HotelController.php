@@ -26,11 +26,14 @@ class HotelController extends Controller
     {
         $formData = $request->validate([
             'name' => ['required','max:50','string','regex:/^([a-zA-Z \']*)$/'],
-            "address_line_1" => ['required', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
+            "address_line_1" => ['required', 'max:100', 'regex:/^([a-zA-Z0-9\, \-\']*)$/'],
+            "address_longitude" => ['required'],
+            "address_latitude" => ['required'],
             "address_line_2" => ['nullable', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
             "city" => ['required', 'max:50', 'regex:/^([a-zA-Z \']*)$/'],
             "post_code" => ['required', 'digits:6'],
-            "image" => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:5048']
+            "image" => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:5048'],
+            "description" => ['nullable', 'max:255']
          ]);
 
         $formData['user_id'] = auth()->user()->id;
@@ -45,8 +48,6 @@ class HotelController extends Controller
         $hotel = new Hotel();
         $hotel->create($formData);
         return to_route('owner.hotel_index')->with('success', 'Hotel created successfully');
-
-
     }
 
     public function edit(Hotel $hotel)
@@ -60,11 +61,14 @@ class HotelController extends Controller
     {
         $formData = $request->validate([
             'name' => ['required','max:50','string','regex:/^([a-zA-Z \']*)$/'],
-            "address_line_1" => ['required', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
+            "address_line_1" => ['required', 'max:100',
+            'regex:/^([a-zA-Z0-9\, \- \']*)$/'],
+            "address_longitude" => ['required'],
+            "address_latitude" => ['required'],
             "address_line_2" => ['nullable', 'max:50', 'regex:/^([a-zA-Z0-9 \']*)$/'],
             "city" => ['required', 'max:50', 'regex:/^([a-zA-Z \']*)$/'],
-            "post_code" => ['required', 'digits_between:4,5'],
-            "image" => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:5048']
+            "post_code" => ['required', 'digits:6'],
+            "image" => ['image', 'mimes:jpeg,png,jpg', 'max:5048']
          ]);
 
         if ($request->hasFile('image')) {

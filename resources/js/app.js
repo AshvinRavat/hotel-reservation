@@ -9,10 +9,11 @@ import { createPopper } from '@popperjs/core';
 
 import '@fortawesome/fontawesome-free/js/all.js';
 
-import "../../node_modules/@googlemaps/js-api-loader/dist/index.min";
-
 import DataTable from 'datatables.net-bs5';
 
 $(document).ready( function () {
     $('#myTable').DataTable();
 });
+
+import "./map";
+import "./datepicker";

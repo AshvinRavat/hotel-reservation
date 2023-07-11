@@ -1,4 +1,18 @@
-export default function initialize() {
+import { Loader } from '@googlemaps/js-api-loader';
+import $ from "jquery";
+
+const loader = new Loader({
+  apiKey: 'AIzaSyDyicuh4fZKaJOu6RPXJURkiXbHDz6b2PM',
+  version: 'weekly',
+  libraries: ['places'],
+});
+
+loader.load().then(() => {
+  initialize();
+});
+
+
+function initialize() {
 
     $('form').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;

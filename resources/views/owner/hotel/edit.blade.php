@@ -35,7 +35,6 @@ Hotel
                                         <div class="col-sm-6 mb-sm-0 mb-4">
                                                 <label for="description" class="form-label">
                                                     Description
-                                                    <span class="text-danger">*</span>
                                                 </label>
                                                 <textarea id="description"
                                                     class="form-control @error('description') is-invalid @enderror"
@@ -47,31 +46,36 @@ Hotel
                                                 @enderror
                                             </div>
                                         <div class="row pb-3 pt-2">
-                                            <div class="col-sm-6 mb-sm-0 mb-4">
-                                                <label for="address-line-1" class="form-label">
-                                                    Address Line 1
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <textarea
-                                                    class="form-control @error('address_line_1') is-invalid @enderror"
-                                                    id="address-line-1"
-                                                    name="address_line_1">{{old('address_line_1', $hotel->address_line_1)}}
-                                                </textarea>
-
-                                                @error('address_line_1')
-                                                    <div class="invalid-feedback">{{$message}}</div>
-                                                @enderror
-                                            </div>
+                                            <div class="form-group col-6">
+                                            <label for="address_input">Address Line 1</label>
+                                            <input type="text"
+                                                id="address-input"
+                                                name="address_line_1"
+                                                class="form-control map-input
+                                                @error('address_line_1') is-invalid @enderror"
+                                                value="{{ old('address_line_1', $hotel->address_line_1) }}">
+                                            <input type="hidden"
+                                                name="address_latitude"
+                                                id="address-latitude"
+                                                value="{{ old('address_latitude', $hotel->address_latitude)}} "/>
+                                            <input type="hidden"
+                                                name="address_longitude"
+                                                id="address-longitude"
+                                                value="{{ old('address_latitude', $hotel->address_longitude)}}" />
+                                            @error('address_line_1')
+                                                <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
                                             <div class="col-sm-6 mb-sm-0 mb-4">
                                                 <label for="address-line-2" class="form-label">
                                                     Address Line 2
                                                 </label>
-                                                <textarea
+                                                <input
                                                     class="form-control @error('address_line_2') is-invalid @enderror"
                                                     id="address-line-2"
-                                                    name="address_line_2">
-                                                    {{old('address_line_2', $hotel->address_line_2)}}
-                                                </textarea>
+                                                    name="address_line_2"
+                                                    value="{{old('address_line_2', $hotel->address_line_2)}}">
+
                                                 @error('address_line_2')
                                                     <div class="invalid-feedback">{{$message}}</div>
                                                 @enderror
@@ -136,5 +140,8 @@ Hotel
                 </div>
             </form>
         </div>
+    </div>
+    <div id="address-map-container " style="width:100%;height:400px;">
+        <div style="width: 100%; height: 100%" id="address-map" class="d-none"></div>
     </div>
 @endsection

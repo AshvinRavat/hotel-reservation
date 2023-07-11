@@ -46,13 +46,26 @@ Hotel
                                                 <div class="invalid-feedback">{{$message}}</div>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                    <label for="address_address">Address</label>
-                                    <input type="text" id="address-input" name="address_address" class="form-control map-input">
-                                    <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
-                                    <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
-                                </div>
-
+                                        <div class="form-group col-6">
+                                            <label for="address-input">Address Line 1</label>
+                                            <input type="text"
+                                                id="address-input"
+                                                name="address_line_1"
+                                                class="form-control map-input
+                                                @error('address_line_1') is-invalid @enderror"
+                                                value="{{ old('address_line_1') }}">
+                                            <input type="hidden"
+                                                name="address_latitude"
+                                                id="address-latitude"
+                                                value="{{ old('address_latitude') }}"/>
+                                            <input type="hidden"
+                                                name="address_longitude"
+                                                id="address-longitude"
+                                                value="{{ old('address_longitude') }}" />
+                                            @error('address_line_1')
+                                                <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
                                         <div class="col-sm-6 mb-sm-0 mb-4">
                                             <label for="address-line-2" class="form-label">
                                                 Address Line 2
@@ -121,8 +134,7 @@ Hotel
             </form>
         </div>
     </div>
-    <div id="address-map-container" style="width:100%;height:400px; ">
-        <div style="width: 100%; height: 100%" id="address-map"></div>
-    </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+<div id="address-map-container " style="width:100%;height:400px;">
+    <div style="width: 100%; height: 100%" id="address-map" class="d-none"></div>
+</div>
 @endsection
