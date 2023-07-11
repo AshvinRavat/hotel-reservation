@@ -45,6 +45,8 @@ class HotelController extends Controller
         $hotel = new Hotel();
         $hotel->create($formData);
         return to_route('owner.hotel_index')->with('success', 'Hotel created successfully');
+
+
     }
 
     public function edit(Hotel $hotel)
