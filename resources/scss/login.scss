@@ -1,0 +1,28 @@
+.login-page-inner{
+    h4{
+                font-size: 22px;
+                color: $primary;
+                font-weight: 600;
+                line-height: 33px;
+                text-align: center;
+                padding-bottom: 40px;
+                margin-bottom: 0;
+            }
+            .card{
+                box-shadow: 0 0 20px rgba($color: $primary, $alpha: 10%);
+                border: none;
+
+            }
+            a{
+                text-decoration: none;
+            }
+        }
+        .login-page{
+            .pt-5{
+                padding-top: 150px !important;
+
+                @media(max-width: 767px) {
+                    padding-top: 15px !important;
+                }
+            }
+        }

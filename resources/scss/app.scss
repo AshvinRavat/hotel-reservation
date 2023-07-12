@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+$primary: #00008B
+
+;
+$gray: #7A7B7E;
+$dark-gray: #535352;
+$white: #ffffff;
+$black: #000000;
+$bg: #F6F7F8;
+$light-gray: #E2E3E6;
+$light-bg:#f9f9f9;
+$light:#fafbfe;
+$noti-bg:#e3e9f1;
+
+
+  @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+body {
+    background-color: #9C27B0
+}
+
+.container {
+    margin-top: 100px
+}
+
+.rating {
+    position: relative;
+    display: flex;
+    width: 2.875rem;
+    height: 2.875rem;
+    margin-top: -1.75rem;
+    margin-left: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    border: .25rem solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    background-color: rebeccapurple
+}
+
+.image {
+    max-width: 100%
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    border-radius: .25rem
+}
+
+.card-title {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 500;
+    color: #653399
+}
+
+.card-text {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 13px
+}
+
+.marker {
+    color: red
+}
+
+.star-rating {
+    color: #f7b944
+}
+
+// room-detail
+
+ .room-image {
+      width: 100%;
+      height: auto;
+    }
+    .booking-details {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+// bill-details
+
+.reservation-container {
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .reservation-label {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .reservation-value {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .total-label {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .total-value {
+      font-size: 24px;
+      color: #007bff;
+    }
+
+// search
+.main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+@import "bootstrap/scss/bootstrap";
+@import "login";
+@import "personal-info";
+@import "../../node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+
+@import '../../node_modules/pikaday/css//pikaday.scss';
