@@ -13,7 +13,8 @@ class RoomController extends Controller
 {
     public function index(Request $request)
     {
-        $room = Room::with(['hotel:id,name,address_line_1,city', 'category:id,name']);
+        $room = Room::with(['hotel:id,name,address_line_1,city', 'category:id,name'])
+        ->paginate(8);
 
 
         return view('index', [
