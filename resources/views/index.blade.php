@@ -1,14 +1,16 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <form action="{{ route('index') }}">
+        <form action="{{ route('index') }}" method="GET">
+            @csrf
             <div class="row">
                 <div class="col-6 mb-2">
                     <div class="form-group">
-                        <label for="address-input">Location</label>
+                        <label for="address_address">Location</label>
                         <input type="text"
                             id="address-input"
                             name="location"
+                            value="{{ $location }}"
                             class="form-control map-input">
                         <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
                         <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
@@ -19,7 +21,7 @@
                         <label for="number-of-guest">Number of Guest</label>
                         <input type="number"
                             id="number-of-guest"
-                            name="number-of-guest"
+                            name="number_of_guest"
                             class="form-control map-input">
                         <input type="hidden" name="address_latitude" id="address-latitude" />
                         <input type="hidden" name="address_longitude" id="address-longitude"/>
@@ -28,18 +30,21 @@
             </div>
             <div class="row d-flex mb-4 mt-2">
                 <div class="col-3">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Select Room Category</option>
+                    <select class="form-select" name="category_id">
+                        <option value="0" >Select Room Category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">
+                                <option value="{{ $category->id }}" @selected(($category_id) == $category->id) >
                                     {{  $category->name }}
                                 </option>
                             @endforeach
                     </select>
                 </div>
                 <div class="col-8">
-                    <input type="text" id="datepicker" class="ms-2" name="datepicker" value="Check-in">
-                    <input type="text" id="datepicker1" name="datepicker" value="Check-out">
+                    <input type="text" id="datepicker" class="ms-2"  name="check_in"  value="{{ $check_in }}">
+                     @error('check_in')
+                         {{ $message }}
+                     @enderror
+                    <input type="text" id="datepicker1"  value="{{ $check_out }}"  name="check_out" >
                     <input type="submit" class="btn btn-primary ms-2" value="Search">
                     <a href="{{ route('index') }}" class="btn btn-dark ms-2">
                         Clear

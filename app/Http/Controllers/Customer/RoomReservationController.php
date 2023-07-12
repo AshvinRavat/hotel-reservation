@@ -38,6 +38,7 @@ class RoomReservationController extends Controller
         ])
         ->where('id', $reservation->id)
         ->get();
+        
         return view('customer.reservation.reservation-detail', [
            'reservationDetails' => $reservation
         ]);
@@ -52,6 +53,7 @@ class RoomReservationController extends Controller
             'end_date' => ['required', 'date', 'after_or_equal:today', "after_or_equal:$request->start_date"],
             'total_persons' => ['required', 'integer', 'max:50'],
         ]);
+        
         $roomsDetails = '';
         $isReserved = $this->isReserved($validatedFormData);
 
@@ -228,4 +230,8 @@ class RoomReservationController extends Controller
     {
         return view('customer.reservation.success');
     }
+
+    
 }
+
+

@@ -6,7 +6,13 @@
 // adding link in the rooms
 
 
-// searching & filtering :
-check-in, check-out :
-    should search via this dates only
-    for example 15-7 to 25-07 
+// get check-in, check-out dates, & total_guest,
+    // if total_guest are pending then default = 2
+
+// get count for the booked dates, & Room ID(s)
+    select count (id), room_id
+    check start_date <= user_start_date,
+    and end_date >= user_end_date
+
+// compare with  : 
+

@@ -15,5 +15,6 @@ $(document).ready( function () {
     $('#myTable').DataTable();
 });
 
+
 import "./map";
 import "./datepicker";
