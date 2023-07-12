@@ -1,9 +1,12 @@
 // changes
 
 // searching, filtering, allow to insert total guests & childe adults as well,
-// include map
 // add more details about rooms
-
-
 // on rooms give quantity so customer can identify how many rooms available
 // adding link in the rooms
+
+
+// searching & filtering :
+check-in, check-out :
+    should search via this dates only
+    for example 15-7 to 25-07 

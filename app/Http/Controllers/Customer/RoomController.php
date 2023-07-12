@@ -7,16 +7,26 @@ use App\Models\Category;
 use App\Models\Hotel;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class RoomController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $room = Room::with(['hotel:id,name,address_line_1,city', 'category:id,name'])
-        ->paginate(8);
+        // $room = Room::with(['hotel:id,name,address_line_1,city', 'category:id,name']);
+
+
+        if ($request->has('location'))
+        {
+            $users = User::whereHas('hotel', function ($q) use ($search) {
+                $q->where('name', '=', $search);
+            })->get();
+
+        }
 
         return view('index', [
-            'rooms' => $room
+            'rooms' => $room,
+            'categories' => $this->catagories(),
         ]);
     }
 
