@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('room_reservation_items', function (Blueprint $table) {
              $table->after('total_rooms', function (Blueprint $table) {
-                $table->integer('total_occupied_rooms');
-                $table->integer('available_rooms');
+                
+                $table->dropColumn(['total_occupied_rooms', 'available_rooms',]);
             });
         });
     }

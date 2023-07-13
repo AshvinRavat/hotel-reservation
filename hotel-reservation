@@ -6,13 +6,97 @@
 // adding link in the rooms
 
 
-// get check-in, check-out dates, & total_guest,
-    // if total_guest are pending then default = 2
 
-// get count for the booked dates, & Room ID(s)
-    select count (id), room_id
-    check start_date <= user_start_date,
-    and end_date >= user_end_date
 
-// compare with  : 
+ check for rooms available for specified date range for number of guest
 
+   1)first thing is to "check date range" with "room availability".
+
+        how to do that?? take date-range, & total guest.
+
+        how to check for room availability ??? 
+
+        fire query for date-range & get booked_rooms, & ROOM id(s)
+        & get the count of that room repeated how many times.
+        using this we will get the total room booked of different room categories
+
+        store this into array called Booked_Rooms
+
+        for example : 
+            select count(id)as booked_rooms, room_od from room_reservation_items
+            ->where(function ($query) use ($startDate, $endDate) {
+            $query->where(function ($q2) use ($startDate) {
+                $q2->where('start_date', '<=', $startDate);
+                $q2->where('end_date', '>=', $startDate);
+            });
+            $query->orWhere(function ($q3) use ($endDate) {
+                $q3->where('start_date', '<=', $endDate);
+                $q3->where('end_date', '>=', $endDate);
+            });
+            $query->orWhere(function ($query1) use ($startDate, $endDate) {
+                $query1->where('end_date', '<=', $endDate);
+                $query1->where('start_date', '>=', $startDate);
+            });
+        })
+
+
+   2)COMPARE BOOKED ROOM WITH FREE ROOMS : 
+        
+        1) get count of free room
+        now fire query on rooms table with below condition:
+            select total_rooms, id from rooms max_occupancy 
+            where total_rooms > booked_rooms and id = room_id, 
+
+            using this result we will get the rooms that are available.
+
+            store this data in array CALLED FREE ROOMS.
+
+          
+            WHAT ABOUT OTHER ROOMS, WHICH ARE NOT BOOKED BUT STILL NEED TO LIST TO USERS ???   
+            another way is fetch room id & again fetch all those rooms from room table where room id not in from above result.
+            
+            how to do that??
+                what we want all details of rooms 
+               $notBookedRooms = select * from rooms where room_id not in (free rooms).
+
+           
+
+3)COUNT TOTAL ROOMS REQUIRE :
+
+    NOW CHECK ROOM REQUIREMENT :
+    first get number of guest, if does not provide set it to 2.
+    if provided than check is grater than 2 if yes than only count total rooms require for the guest.
+    
+    how to do that ?? 
+        divide total guest by max_occupancy of the room.
+
+
+        foreach (FREEROOMS as freeRoom) {
+          $roomsRequired =  total_guest / freeRoom[max_occupancy]
+        }
+
+        store the result in the roomsREquired ARRay
+
+    what we need, 
+        total guest, max_occupancy
+
+     Simple : 
+      1) get total_guest
+      2) iterate into the freerooms.
+      3) check for each room by dividing total_guest with max_occupancy of that room.
+      4) now store that rooms require in to array called RequiredRooms. WITH room_id   
+    
+    
+    
+4)COMPARE REUIRED ROOMS WITH AVAILBE ROOMS 
+
+     1) GET REQUIRE ROOMS ARRAY 
+     2) ITERATE INTO FREE ROOMS
+     3) ITERATE  BOOKED_ROOMS        
+     4) ITERATE  REQUIRED_ROOMS ALSO       
+     5) NOW CHECK  AVALBILE ROOMS= FREE_ROOMS->TOTAL_ROOMS - BOOKED_ROOMS 
+     6) IF AVALBILE >= REQUIRED_ROOMS['require_room'] 
+     7) IF ABOVE CONDATION IS  TRUE MEANS ROOM IS AVAILBE STORE THAT ROOM'S ID IN TO ARRAY CALLED AVAILABLE_ROOMS_ID_FOR_REQUIRED_ROOMS  
+
+5) RUN ELSE PART & PASS THESES ALL ROOMS ID
+        IN SIMPLE IF THESE IDS ARE GETIING THAT MEANS ROOMS ARE AVAILBE OTHRWISE NOT

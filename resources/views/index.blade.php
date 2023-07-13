@@ -22,6 +22,7 @@
                         <input type="number"
                             id="number-of-guest"
                             name="number_of_guest"
+                            value="{{$number_of_guest }}"
                             class="form-control map-input">
                         <input type="hidden" name="address_latitude" id="address-latitude" />
                         <input type="hidden" name="address_longitude" id="address-longitude"/>
